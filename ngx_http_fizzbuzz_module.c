@@ -133,7 +133,7 @@ static ngx_int_t ngx_http_fizzbuzz_handler(ngx_http_request_t *r)
     out.buf     = b;
     out.next    = NULL;
 
-    r->headers_out.content_type.len  = sizeof("text/html") - 1;
+    r->headers_out.content_type.len  = ngx_strlen("text/html");
     r->headers_out.content_type.data = (u_char *) "text/html";
     r->headers_out.status            = NGX_HTTP_OK;
     r->headers_out.content_length_n  = clen;
