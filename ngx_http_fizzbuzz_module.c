@@ -41,7 +41,7 @@ typedef struct {
 static ngx_int_t  ngx_http_fizzbuzz_handler(ngx_http_request_t *r);
 static void      *ngx_http_fizzbuzz_create_loc_conf(ngx_conf_t *cf);
 static char      *ngx_http_fizzbuzz(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
-static ngx_int_t  ngx_http_fizzbuzz_atoi(ngx_str_t *value);
+static ngx_uint_t ngx_http_fizzbuzz_atoi(ngx_str_t *value);
 static ngx_uint_t ngx_http_fizzbuzz_get_number(ngx_http_request_t *r, ngx_http_complex_value_t *cv, ngx_uint_t v);
 static ngx_http_fizzbuzz_result_t ngx_http_fizzbuzz_result(ngx_uint_t n);
 
@@ -167,7 +167,7 @@ static char *ngx_http_fizzbuzz(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     ngx_http_fizzbuzz_conf_t         *fbcf;
     ngx_http_core_loc_conf_t         *clcf;
     ngx_str_t                        *values;
-    ngx_int_t                         number;
+    ngx_uint_t                        number;
     ngx_http_complex_value_t          cv;
     ngx_http_compile_complex_value_t  ccv;
 
@@ -202,16 +202,20 @@ static char *ngx_http_fizzbuzz(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     return NGX_CONF_OK;
 }
 
-static ngx_int_t ngx_http_fizzbuzz_atoi(ngx_str_t *value)
+static ngx_uint_t ngx_http_fizzbuzz_atoi(ngx_str_t *value)
 {
     ngx_int_t n;
     n = ngx_atoi(value->data, value->len);
-    return ngx_abs(n);
+    if (n == NGX_ERROR) {
+        return 0;
+    }
+    return (ngx_uint_t) n;
 }
 
 static ngx_uint_t ngx_http_fizzbuzz_get_number(ngx_http_request_t *r, ngx_http_complex_value_t *cv, ngx_uint_t v)
 {
-    ngx_str_t  val;
+    ngx_str_t val;
+    ngx_uint_t ret;
 
     if (cv == NULL) {
         return v;
