@@ -108,6 +108,10 @@ static ngx_int_t ngx_http_fizzbuzz_handler(ngx_http_request_t *r)
     loc_conf = ngx_http_get_module_loc_conf(r, ngx_http_fizzbuzz_module);
 
     number = ngx_http_fizzbuzz_get_number(r, loc_conf->ncv, loc_conf->number);
+    if (number == 0) {
+        ngx_log_error(NGX_LOG_ERR, r->connection->log, 0, "fizzbuzz: n > 0");
+        return NGX_HTTP_BAD_REQUEST;
+    }
     result = ngx_http_fizzbuzz_result(number);
 
     buf = ngx_pcalloc(r->pool, BUFSIZ);
