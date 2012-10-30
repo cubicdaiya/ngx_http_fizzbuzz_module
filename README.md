@@ -3,7 +3,7 @@
 FizzBuzz with Nginx
 
 ```
-location /fizzbuzz {
+location ~ /fizzbuzz$ {
     fizzbuzz $arg_number;
 }
 ```
