@@ -6,17 +6,17 @@
 #include <ngx_core.h>
 #include <ngx_http.h>
 
-#define HTML_TEMPLATE(qualifier)            \
-    "<!DOCTYPE html>\n"                     \
-    "<html>\n"                              \
-    "<head>\n"                              \
-    "<title>FizzBuzz with Nginx!</title>\n" \
-    "</head>\n"                             \
-    "<body>\n"                              \
-    "<p>FizzBuzz(%d) = "                    \
-    qualifier                               \
-    "</p>\n"                                \
-    "</body>\n"                             \
+#define HTML_TEMPLATE(qualifier)                \
+    "<!DOCTYPE html>\n"                         \
+    "<html>\n"                                  \
+    "<head>\n"                                  \
+    "<title>FizzBuzz with Nginx!</title>\n"     \
+    "</head>\n"                                 \
+    "<body>\n"                                  \
+    "<p>FizzBuzz(%d) = "                        \
+    qualifier                                   \
+    "</p>\n"                                    \
+    "</body>\n"                                 \
     "</html>\n"
     
 
