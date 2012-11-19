@@ -10,7 +10,7 @@
     "<!DOCTYPE html>\n"                         \
     "<html>\n"                                  \
     "<head>\n"                                  \
-    "<title>FizzBuzz with Nginx!</title>\n"     \
+    "<title>FizzBuzz with nginx!</title>\n"     \
     "</head>\n"                                 \
     "<body>\n"                                  \
     "<p>FizzBuzz(%d) = "                        \
