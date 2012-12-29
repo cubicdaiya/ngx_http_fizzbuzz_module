@@ -215,7 +215,6 @@ static ngx_uint_t ngx_http_fizzbuzz_atoi(ngx_str_t *value)
 static ngx_uint_t ngx_http_fizzbuzz_get_number(ngx_http_request_t *r, ngx_http_complex_value_t *cv, ngx_uint_t v)
 {
     ngx_str_t val;
-    ngx_uint_t ret;
 
     if (cv == NULL) {
         return v;
