@@ -114,14 +114,14 @@ static ngx_int_t ngx_http_fizzbuzz_handler(ngx_http_request_t *r)
     }
     result = ngx_http_fizzbuzz_result(number);
 
-    buf = ngx_pcalloc(r->pool, BUFSIZ);
+    buf = ngx_pcalloc(r->pool, BUFSIZ + 1);
     if (buf == NULL) {
         return NGX_HTTP_INTERNAL_SERVER_ERROR;
     }
     if (result == NGX_HTTP_FIZZBUZZ_RESULT_MAX) {
-        ngx_sprintf(buf, HTML_TEMPLATE("%d"), number, number);
+        ngx_snprintf(buf, BUFSIZ, HTML_TEMPLATE("%d"), number, number);
     } else {
-        ngx_sprintf(buf, HTML_TEMPLATE("%s"), number, ngx_http_fizzbuzz_results[result]);
+        ngx_snprintf(buf, BUFSIZ, HTML_TEMPLATE("%s"), number, ngx_http_fizzbuzz_results[result]);
     }
 
     clen = ngx_strlen(buf); 
